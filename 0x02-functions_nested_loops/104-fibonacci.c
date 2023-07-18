@@ -1,27 +1,44 @@
 #include <stdio.h>
-
+/**
+ * main - main block
+ * Description: computes and prints the sum of all the multiples of 3 or
+ * 5 below 1024 (excluded), followed by a new line
+ * Return: 0
+ */
 int main(void)
 {
-    int fibonacci[50];
-    int i;
+	unsigned long int i;
+	unsigned long int bef = 1;
+	unsigned long int aft = 2;
+	unsigned long int l = 1000000000;
+	unsigned long int bef1;
+	unsigned long int bef2;
+	unsigned long int aft1;
+	unsigned long int aft2;
 
-    // Initialize the first two Fibonacci numbers
-    fibonacci[0] = 1;
-    fibonacci[1] = 2;
+	printf("%lu", bef);
 
-    // Compute the remaining Fibonacci numbers
-    for (i = 2; i < 50; i++) {
-        fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
-    }
+	for (i = 1; i < 91; i++)
+	{
+		printf(", %lu", aft);
+		aft += bef;
+		bef = aft - bef;
+	}
 
-    // Print the Fibonacci numbers separated by comma and space
-    for (i = 0; i < 49; i++) {
-        printf("%d, ", fibonacci[i]);
-    }
+	bef1 = (bef / l);
+	bef2 = (bef % l);
+	aft1 = (aft / l);
+	aft2 = (aft % l);
 
-    // Print the last Fibonacci number without a trailing comma
-    printf("%d\n", fibonacci[49]);
-
-    return 0;
+	for (i = 92; i < 99; ++i)
+	{
+		printf(", %lu", aft1 + (aft2 / l));
+		printf("%lu", aft2 % l);
+		aft1 = aft1 + bef1;
+		bef1 = aft1 - bef1;
+		aft2 = aft2 + bef2;
+		bef2 = aft2 - bef2;
+	}
+	printf("\n");
+	return (0);
 }
-
